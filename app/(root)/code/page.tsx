@@ -18,6 +18,8 @@ import { cn } from "@/lib/utils";
 import { BotAvatar } from "@/components/shared/bot-avatar";
 import UserAvatar from "@/components/shared/user-avatar";
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function ConversionPage() {
   const router = useRouter();
@@ -111,6 +113,7 @@ export default function ConversionPage() {
               <Empty lable="No Conversion Started" />
             </div>
           )}
+
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((msg: any, index: any) => (
               <div
@@ -123,6 +126,7 @@ export default function ConversionPage() {
                 )}
               >
                 {msg.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                {/* <SyntaxHighlighter language="javascript" style={atomDark}> */}
                 <ReactMarkdown
                   components={{
                     pre: ({ node, ...props }) => (
@@ -138,9 +142,45 @@ export default function ConversionPage() {
                 >
                   {msg.content || ""}
                 </ReactMarkdown>
+                {/* </SyntaxHighlighter> */}
               </div>
             ))}
           </div>
+
+          {/* HightLight Messages */}
+          {/* {messages.map((msg: any, index: any) => {
+            const parts = msg.content.split(/(```[^```]*```)/g);
+            return (
+              <div
+                key={index}
+                className={cn(
+                  "p-8 w-full flex flex-col items-start gap-x-8 rounded-lg",
+                  msg.role === "user"
+                    ? "bg-white border border-black/10"
+                    : "bg-muted"
+                )}
+              >
+                {msg.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                {parts.map((part: any, i: any) => {
+                  if (part.startsWith("```") && part.endsWith("```")) {
+                    const code = part.slice(3, -3);
+                    return (
+                      <SyntaxHighlighter
+                        key={i}
+                        language="javascript"
+                        style={atomDark}
+                        className="w-screen flex flex-col gap-y-4"
+                      >
+                        {code}
+                      </SyntaxHighlighter>
+                    );
+                  } else {
+                    return <span key={i}>{part}</span>;
+                  }
+                })}
+              </div>
+            );
+          })} */}
         </div>
       </div>
     </div>
