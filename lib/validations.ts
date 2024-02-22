@@ -19,6 +19,17 @@ export const imageFormSchema = z.object({
   resolution: z.string().min(1),
 });
 
+export const musicSchema = z.object({
+  prompt: z.string().min(1, {
+    message: "Music prompt is required",
+  }),
+});
+export const videoSchema = z.object({
+  prompt: z.string().min(1, {
+    message: "Video prompt is required",
+  }),
+});
+
 export const amountOptions = [
   {
     value: "1",
