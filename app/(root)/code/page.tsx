@@ -20,9 +20,11 @@ import UserAvatar from "@/components/shared/user-avatar";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useProModal } from "@/hooks/user-pro-modal";
 
 export default function ConversionPage() {
   const router = useRouter();
+  const proModel = useProModal();
   const [messages, setMessages] = React.useState<
     CreateChatCompletionRequestMessage[]
   >([]);
@@ -49,6 +51,9 @@ export default function ConversionPage() {
 
       form.reset();
     } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModel.onOpen();
+      }
       console.error(error);
     } finally {
       router.refresh();

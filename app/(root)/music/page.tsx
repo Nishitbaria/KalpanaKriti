@@ -13,10 +13,12 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Empty from "@/components/shared/Empty";
 import Loader from "@/components/shared/Loader";
+import { useProModal } from "@/hooks/user-pro-modal";
 
 export default function MusicPage() {
   const router = useRouter();
   const [music, setMusic] = useState<string>();
+  const proModel = useProModal();
 
   const form = useForm<z.infer<typeof musicSchema>>({
     resolver: zodResolver(musicSchema),
@@ -37,6 +39,9 @@ export default function MusicPage() {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModel.onOpen();
+      }
       console.error(error);
     } finally {
       router.refresh();

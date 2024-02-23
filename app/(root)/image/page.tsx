@@ -28,10 +28,12 @@ import {
 } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { useProModal } from "@/hooks/user-pro-modal";
 
 export default function ConversionPage() {
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
+  const proModel = useProModal();
 
   const form = useForm<z.infer<typeof imageFormSchema>>({
     resolver: zodResolver(imageFormSchema),
@@ -56,6 +58,9 @@ export default function ConversionPage() {
       console.log(response);
       form.reset();
     } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModel.onOpen();
+      }
       console.error(error);
     } finally {
       router.refresh();

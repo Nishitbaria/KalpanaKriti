@@ -14,10 +14,12 @@ import axios from "axios";
 import Empty from "@/components/shared/Empty";
 import Loader from "@/components/shared/Loader";
 import router from "next/router";
+import { useProModal } from "@/hooks/user-pro-modal";
 
 export default function VideoPage() {
   const router = useRouter();
   const [video, setVideo] = useState<string>();
+  const proModel = useProModal();
 
   const form = useForm<z.infer<typeof videoSchema>>({
     resolver: zodResolver(videoSchema),
@@ -38,6 +40,9 @@ export default function VideoPage() {
       console.log(video);
       form.reset();
     } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModel.onOpen();
+      }
       console.error(error);
     } finally {
       router.refresh();

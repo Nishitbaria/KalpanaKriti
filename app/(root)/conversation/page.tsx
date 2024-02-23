@@ -17,9 +17,11 @@ import Loader from "@/components/shared/Loader";
 import { cn } from "@/lib/utils";
 import { BotAvatar } from "@/components/shared/bot-avatar";
 import UserAvatar from "@/components/shared/user-avatar";
+import { useProModal } from "@/hooks/user-pro-modal";
 
 export default function ConversionPage() {
   const router = useRouter();
+  const proModel = useProModal();
   const [messages, setMessages] = React.useState<
     CreateChatCompletionRequestMessage[]
   >([]);
@@ -46,6 +48,9 @@ export default function ConversionPage() {
 
       form.reset();
     } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModel.onOpen();
+      }
       console.error(error);
     } finally {
       router.refresh();

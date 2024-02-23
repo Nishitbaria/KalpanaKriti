@@ -12,6 +12,7 @@ import {
 import { tools } from "@/constants/constants";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useProModal } from "@/hooks/user-pro-modal";
 
 export default function DashboardPage() {
   const router = useRouter();

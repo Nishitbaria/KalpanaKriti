@@ -8,60 +8,23 @@ import {
   Music,
   Settings,
   VideoIcon,
+  Zap,
 } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import FreeCounter from "./FreeCounter";
+import { Card, CardContent } from "../ui/card";
+import { MAX_FREE_COUNTS, routes } from "@/constants/constants";
+import { Progress } from "../ui/progress";
+import { Button } from "../ui/button";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin-ext"] });
 
-const routes = [
-  {
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    href: "/dashboard",
-    color: "text-sky-500",
-  },
-  {
-    label: "Conversation",
-    icon: MessageSquare,
-    href: "/conversation",
-    color: "text-violet-500",
-  },
-  {
-    label: "Image Generation",
-    icon: ImageIcon,
-    color: "text-pink-700",
-    href: "/image",
-  },
-  {
-    label: "Video Generation",
-    icon: VideoIcon,
-    color: "text-orange-700",
-    href: "/video",
-  },
-  {
-    label: "Music Generation",
-    icon: Music,
-    color: "text-emerald-500",
-    href: "/music",
-  },
-  {
-    label: "Code Generation",
-    icon: Code,
-    color: "text-green-700",
-    href: "/code",
-  },
-  {
-    label: "Settings",
-    icon: Settings,
-    href: "/settings",
-  },
-];
-
-export default function Sidebar() {
+export default function Sidebar({ apiLimitCount }: { apiLimitCount: number }) {
+  console.log(apiLimitCount);
   const pathname = usePathname();
   return (
     <div className="space-y-4 py-4 flex flex-col h-full text-white bg-[#111827]">
@@ -94,6 +57,9 @@ export default function Sidebar() {
           ))}
         </div>
       </div>
+      {/* <FreeCounter apiLimitCount={apiLimitCount} /> */}
+      {/* <p className="text-white"> {apiLimitCount} </p> */}
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   );
 }
