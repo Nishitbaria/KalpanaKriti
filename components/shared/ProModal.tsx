@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -16,10 +16,27 @@ import { tools } from "@/constants/constants";
 import { Check, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { NextResponse } from "next/server";
+import axios from "axios";
 
 export default function ProModal() {
   const proModal = useProModal();
+  const [loading, setLoading] = useState(false);
+  const onSubscribe = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get("/api/stripe");
 
+      window.location.href = response.data.url;
+    } catch (error: any) {
+      console.error("Yaha se error aa rahi he", error.message);
+      return new NextResponse(`Webhook Error: ${error.message}`, {
+        status: 400,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>
@@ -56,7 +73,11 @@ export default function ProModal() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button className="w-full border-0" variant={"premium"}>
+          <Button
+            onClick={onSubscribe}
+            className="w-full border-0"
+            variant={"premium"}
+          >
             Upgrade to Pro
             <Zap className="w-5 h-5 ml-2 fill-white" />
           </Button>
