@@ -9,13 +9,10 @@ import { useProModal } from "@/hooks/user-pro-modal";
 
 interface Props {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-export default function FreeCounter({
-  apiLimitCount,
-}: {
-  apiLimitCount: number;
-}) {
+export default function FreeCounter({ apiLimitCount, isPro = false }: Props) {
   const count = apiLimitCount;
 
   console.log("from", count, typeof count);
@@ -26,6 +23,9 @@ export default function FreeCounter({
   }, []);
 
   if (!mounted) {
+    return null;
+  }
+  if (isPro) {
     return null;
   }
 

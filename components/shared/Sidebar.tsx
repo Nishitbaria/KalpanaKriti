@@ -23,7 +23,12 @@ import { Button } from "../ui/button";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin-ext"] });
 
-export default function Sidebar({ apiLimitCount }: { apiLimitCount: number }) {
+interface Props {
+  apiLimitCount: number;
+  isPro: boolean;
+}
+
+export default function Sidebar({ apiLimitCount, isPro = false }: Props) {
   console.log(apiLimitCount);
   const pathname = usePathname();
   return (
@@ -59,7 +64,7 @@ export default function Sidebar({ apiLimitCount }: { apiLimitCount: number }) {
       </div>
       {/* <FreeCounter apiLimitCount={apiLimitCount} /> */}
       {/* <p className="text-white"> {apiLimitCount} </p> */}
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import * as z from "zod";
 import Heading from "@/components/shared/Heading";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MessageSquare } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { conversionFormSchema } from "@/lib/validations";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -18,6 +18,8 @@ import { cn } from "@/lib/utils";
 import { BotAvatar } from "@/components/shared/bot-avatar";
 import UserAvatar from "@/components/shared/user-avatar";
 import { useProModal } from "@/hooks/user-pro-modal";
+import { toast, useToast } from "@/components/ui/use-toast";
+import { title } from "process";
 
 export default function ConversionPage() {
   const router = useRouter();
@@ -25,6 +27,7 @@ export default function ConversionPage() {
   const [messages, setMessages] = React.useState<
     CreateChatCompletionRequestMessage[]
   >([]);
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof conversionFormSchema>>({
     resolver: zodResolver(conversionFormSchema),
@@ -49,8 +52,14 @@ export default function ConversionPage() {
       form.reset();
     } catch (error: any) {
       if (error?.response?.status === 403) {
+        toast({
+          title: "You are Not Pro User",
+          description: "Upgrade to Pro to continue",
+          className: "bg-red-500 text-white",
+        });
         proModel.onOpen();
       }
+
       console.error(error);
     } finally {
       router.refresh();

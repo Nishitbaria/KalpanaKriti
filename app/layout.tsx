@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ModalProvider from "@/components/shared/modal-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { CrispProvider } from "@/components/shared/crisp-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <CrispProvider />
+          {children}
+          <Toaster />
+        </body>
         <ModalProvider />
       </html>
     </ClerkProvider>
