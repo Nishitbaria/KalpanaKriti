@@ -13,9 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar } from "../ui/avatar";
 import { AvatarImage } from "@radix-ui/react-avatar";
+import { MobileSidebar2 } from "../shared/mobile-sidebar";
+import { UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/clerk-react";
 
 export const Navbar = () => {
   const [isTransparent, setIsTransparent] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,14 +47,17 @@ export const Navbar = () => {
             <Avatar className="h-8 w-8">
               <AvatarImage className="p-1" src="/logo.png" />
             </Avatar>
-            <p className=" text-lg text-black dark:text-white font-black ml-1">
+            <Link
+              href={"/"}
+              className=" text-lg text-black dark:text-white font-black ml-1 hidden sm:block"
+            >
               {" "}
               KalpanaKriti
-            </p>
+            </Link>
           </div>
-
+          {/* Links of The navbar */}
           <div
-            className="flex items-center justify-center  lg:justify-start rounded-lg text-sm transition colors transform active:translate-y-[2px] *:p-1 *:lg:px-2.5 *:w-full *:h-full *:flex *:items-center aria-disabled:cursor-not-allowed aria-disabled:opacity-50 active:text-current text-gray-600 dark:text-gray-300
+            className="hidden lg:flex items-center justify-center rounded-lg text-sm transition colors transform active:translate-y-[2px] *:p-1 *:lg:px-2.5 *:w-full *:h-full *:flex *:items-center aria-disabled:cursor-not-allowed aria-disabled:opacity-50 active:text-current text-gray-600 dark:text-gray-300
             hover:text-current dark:hover:text-white font-semibold"
           >
             <Link
@@ -59,36 +66,35 @@ export const Navbar = () => {
             >
               DashBoard
             </Link>
-            <Link
-              className="transition-transform duration-500 "
-              href="/dashboard"
-            >
+            <Link className="transition-transform duration-500 " href="/Price">
               Pricing
             </Link>
-            <Link
-              className="transition-transform duration-500 "
-              href="/dashboard"
-            >
+            <Link className="transition-transform duration-500 " href="/FAQ">
               FAQ
             </Link>
           </div>
 
           {/* TOP RIGHT CORNER */}
-          <div className="hidden items-center gap-4 lg:flex">
-            <button
-              className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-gray-900 hover:bg-gray-900/10 active:bg-gray-900/20"
-              type="button"
-              data-ripple-light="true"
-            >
-              Log in
-            </button>
-            <button
-              className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-              type="button"
-              data-ripple-light="true"
-            >
-              buy now
-            </button>
+          <div className="hidden lg:flex items-center justify-between gap-4">
+            <SignedOut>
+              <button
+                className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-gray-900 hover:bg-gray-900/10 active:bg-gray-900/20"
+                type="button"
+                data-ripple-light="true"
+              >
+                Log in
+              </button>
+              <button
+                className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+                type="button"
+                data-ripple-light="true"
+              >
+                buy now
+              </button>
+            </SignedOut>
+          </div>
+
+          <div className="flex items-center justify-between space-x-2">
             {/* Dark mode Light Mode Button */}
             <DropdownMenu>
               <DropdownMenuTrigger className="" asChild>
@@ -113,58 +119,13 @@ export const Navbar = () => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-          <button
-            className="relative ml-auto inline-block h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
-            type="button"
-            data-ripple-dark="true"
-            data-collapse-target="navbar"
-          >
-            <span className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                aria-hidden="true"
-                className="h-6 w-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                ></path>
-              </svg>
-            </span>
-          </button>
-        </div>
-        <div
-          data-collapse="navbar"
-          className="block h-0 w-full basis-full overflow-hidden transition-all duration-300 ease-in lg:hidden"
-        >
-          <div className="container mx-auto mt-3 border-t border-blue-gray-50 px-2 pt-4">
-            {/* here is Coming Linnks */}
-
-            {/* TOP RIGHT CORNER */}
-            <div className="mt-6 mb-4 flex items-center gap-4">
-              <button
-                className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-gray-900 hover:bg-gray-900/10 active:bg-gray-900/20"
-                type="button"
-                data-ripple-dark="true"
-              >
-                Log in
-              </button>
-              <button
-                className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
-                type="button"
-                data-ripple-light="true"
-              >
-                buy now
-              </button>
-            </div>
+            <UserButton />
+            <MobileSidebar2 />
           </div>
         </div>
+        {/* <div className="hidden lg:block h-0 w-full basis-full overflow-hidden transition-all duration-300 ease-in lg:hidden">
+          <div className="container mx-auto mt-3 border-t border-blue-gray-50 px-2 pt-4"></div>
+        </div> */}
       </div>
     </div>
   );

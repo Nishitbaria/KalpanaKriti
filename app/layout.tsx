@@ -6,6 +6,7 @@ import ModalProvider from "@/components/shared/modal-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { CrispProvider } from "@/components/shared/crisp-provider";
 import { ThemeProvider } from "@/components/theme-provider";
+import Footer from "@/components/landingpage/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
           <Toaster />
+          <Footer />
         </body>
         <ModalProvider />
       </html>

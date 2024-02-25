@@ -17,10 +17,10 @@ export default async function DashboardLayout({
       <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0  bg-gray-800">
         <Sidebar apiLimitCount={apiLimitCount} isPro={isPro} />
       </div>
-      <main className="md:pl-72">
+      <div className="md:pl-72">
         <Navbar apiLimitCount={apiLimitCount} />
         {children}
-      </main>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import {
   Code,
+  IceCream,
   ImageIcon,
   LayoutDashboard,
   MessageSquare,
