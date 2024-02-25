@@ -44,7 +44,7 @@ export default function FreeCounter({ apiLimitCount, isPro = false }: Props) {
           </div>
           <Button
             onClick={proModel.onOpen}
-            variant="premium"
+            variant="premiumblue"
             className="w-full border-0 focus:border-1"
           >
             Upgrade
