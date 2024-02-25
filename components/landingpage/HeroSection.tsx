@@ -2,7 +2,10 @@ import React from "react";
 import { Navbar } from "./Navbar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, PanelRightDashed } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import MyComponent from "./DesktopTab";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
@@ -44,9 +47,31 @@ export default function HeroSection() {
                   <ArrowRight className="w-4 h-4 ml-2 fill-white" />
                 </Button>
               </div>
+              {/* second Part of HeroSection */}
+            </div>
+            <div className="flex flex-col w-full items-center justify-center mt-4 ">
+              <Tabs defaultValue="account" className="w-full mt-9">
+                <TabsList>
+                  <TabsTrigger value="account">IMAGE AI</TabsTrigger>
+                  <TabsTrigger value="password">VIDEO AI</TabsTrigger>
+                </TabsList>
+                <TabsContent value="account" className="">
+                  <div className="mt-24 w-full flex flex-col justify-center items-center rounded-lg border bg-foreground/5 p-2">
+                    <Image
+                      alt="App Image"
+                      width={1920}
+                      height={1080}
+                      className="shadow-[0_0_1000px_0] shadow-primary/40 dark:shadow-sky-400/40 animate-in zoom-in-75 delay-300 duration-1000 ease-out fill-mode-both text-transparent"
+                      src="/1tb.png"
+                    />
+                  </div>
+                </TabsContent>
+                <TabsContent value="password">
+                  Change your password here.
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
-          {/* second Part of HeroSection */}
         </div>
       </header>
     </div>

@@ -43,7 +43,10 @@ export const Navbar = () => {
             <Avatar className="h-8 w-8">
               <AvatarImage className="p-1" src="/logo.png" />
             </Avatar>
-            <p className=" text-lg text-white font-black ml-1"> KalpanaKriti</p>
+            <p className=" text-lg text-black dark:text-white font-black ml-1">
+              {" "}
+              KalpanaKriti
+            </p>
           </div>
 
           <div
@@ -122,14 +125,14 @@ export const Navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                strokeWidth="2"
                 stroke="currentColor"
                 aria-hidden="true"
                 className="h-6 w-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 ></path>
               </svg>
