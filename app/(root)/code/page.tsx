@@ -124,10 +124,10 @@ export default function ConversionPage() {
               <div
                 key={index}
                 className={cn(
-                  "p-8 w-full flex items-start gap-x-8 rounded-lg",
+                  "p-8 w-full flex items-start gap-x-8 rounded-lg text-sm font-normal dark:text-gray-900 text-white",
                   msg.role === "user"
-                    ? "bg-white border border-black/10"
-                    : "bg-muted"
+                    ? "bg-white dark:bg-gray-700 border dark:text-white border-black/10"
+                    : "bg-muted dark:text-white"
                 )}
               >
                 {msg.role === "user" ? <UserAvatar /> : <BotAvatar />}
@@ -140,10 +140,13 @@ export default function ConversionPage() {
                       </div>
                     ),
                     code: ({ node, ...props }) => (
-                      <code className="bg-black/10 rounded-lg p-1" {...props} />
+                      <code
+                        className="bg-black/10 dark:bg-gray-600 rounded-lg p-1 text-gray-500 dark:text-white "
+                        {...props}
+                      />
                     ),
                   }}
-                  className="text-sm overflow-hidden leading-7"
+                  className="text-sm overflow-hidden leading-7 w-full"
                 >
                   {msg.content || ""}
                 </ReactMarkdown>

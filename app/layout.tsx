@@ -34,7 +34,6 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
           <Toaster />
-          <Footer />
         </body>
         <ModalProvider />
       </html>

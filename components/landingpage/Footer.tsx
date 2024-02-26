@@ -1,20 +1,22 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "../ui/avatar";
 
 export default function Footer() {
   return (
-    <div className="bg-white dark:bg-gray-900 mt-48">
+    <div className="bg-white dark:bg-gray-900">
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-            <Avatar className="h-8 w-8">
-              <AvatarImage className="p-1" src="/logo.png" />
-            </Avatar>
+            <div className="flex items-center justify-start">
+              <Avatar className="h-8 w-8">
+                <AvatarImage className="p-1" src="/logo.png" />
+              </Avatar>
+              KalpanaKriti
+            </div>
             <p className="max-w-xs mt-4 text-sm text-gray-600">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
-              accusantium.
+              KalpanaKriti is the only platform that provides a complete
+              solution for AI powered content generation, and a whole lot more.
             </p>
             <div className="flex mt-8 space-x-6 text-gray-600">
               <Link
@@ -136,20 +138,20 @@ export default function Footer() {
             <div>
               <p className="font-medium">Services</p>
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-                <Link className="hover:opacity-75" href="">
-                  1on1 Coaching
+                <Link className="hover:opacity-75" href="/image">
+                  Image Generation
                 </Link>
-                <Link className="hover:opacity-75" href="">
-                  Company Review
+                <Link className="hover:opacity-75" href="/video">
+                  Video Generation
                 </Link>
-                <Link className="hover:opacity-75" href="">
-                  Accounts Review
+                <Link className="hover:opacity-75" href="/music">
+                  Music Generation
                 </Link>
-                <Link className="hover:opacity-75" href="">
-                  HR Consulting
+                <Link className="hover:opacity-75" href="/conversation">
+                  Text Generation
                 </Link>
-                <Link className="hover:opacity-75" href="">
-                  SEO Optimisation
+                <Link className="hover:opacity-75" href="/code">
+                  Code Generation
                 </Link>
               </nav>
             </div>
@@ -186,7 +188,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <p className="mt-8 text-xs text-gray-800">© 2022 Comany Name</p>
+        <p className="mt-8 text-xs text-gray-800 font-normal dark:text-white">
+          ©2024 KalpanaKriti
+        </p>
       </div>
     </div>
   );
