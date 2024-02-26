@@ -112,7 +112,7 @@ export default function ConversionPage() {
             </form>
           </Form>
         </div>
-        <div className="space-y-4 mt-4 text-black">
+        <div className="space-y-4 mt-4 text-black dark:text-white">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
               <Loader />
@@ -131,7 +131,7 @@ export default function ConversionPage() {
                 className={cn(
                   "p-8 w-full flex items-start gap-x-8 rounded-lg",
                   msg.role === "user"
-                    ? "bg-white border border-black/10"
+                    ? "bg-white dark:bg-gray-800 dark:text-white border border-black/10"
                     : "bg-muted"
                 )}
               >
