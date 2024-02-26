@@ -9,7 +9,6 @@ import NewsLetter from "@/components/landingpage/NewsLetter";
 import Features from "@/components/landingpage/Featuer";
 import CTASection from "@/components/landingpage/CTASection";
 import Howitwork from "@/components/landingpage/Howitwork";
-import Alert from "@/components/shared/Alert";
 
 export default function page() {
   return (
