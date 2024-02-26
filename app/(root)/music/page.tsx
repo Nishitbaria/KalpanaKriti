@@ -57,8 +57,8 @@ export default function MusicPage() {
         title="Music"
         description="Turn Your Promt into a music lyrics, song or anything you want."
         icon={Music}
-        iconColor="text-emerald-500"
-        bgColor="bg-emerald-500/10"
+        iconColor="text-emerald-500 dark:text-emerald-400"
+        bgColor="bg-emerald-500/10 dark:bg-emerald-500/30"
       />
       <div className="px-4 lg:px:8">
         <div>

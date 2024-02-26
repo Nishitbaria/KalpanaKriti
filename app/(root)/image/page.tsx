@@ -76,8 +76,8 @@ export default function ConversionPage() {
         title="Image Generation"
         description="Turn your Prompt into an Image"
         icon={ImageIcon}
-        iconColor="text-pink-700"
-        bgColor="bg-pink-700/10"
+        iconColor="text-pink-700 dark:text-pink-400"
+        bgColor="bg-pink-700/10 dark:bg-pink-700/30"
       />
       <div className="px-4 lg:px:8">
         <div>

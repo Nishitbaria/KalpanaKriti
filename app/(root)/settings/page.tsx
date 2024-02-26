@@ -13,8 +13,8 @@ export default async function Setting() {
         title="Settings"
         description="Manage account settings."
         icon={Settings}
-        iconColor="text-gray-700"
-        bgColor="bg-gray-700/10"
+        iconColor="text-gray-700 dark:text-gray-300"
+        bgColor="bg-gray-700/10 dark:bg-gray-800"
       />
       <div className="px-4 lg:px-8 space-y-4">
         <div className="text-muted-foreground text-sm">
