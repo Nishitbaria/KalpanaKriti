@@ -141,12 +141,12 @@ export default function ConversionPage() {
                     ),
                     code: ({ node, ...props }) => (
                       <code
-                        className="bg-black/10 dark:bg-gray-600 rounded-lg p-1 text-gray-500 dark:text-white "
+                        className="bg-black/10 dark:bg-gray-600 rounded-lg p-1 text-black dark:text-white "
                         {...props}
                       />
                     ),
                   }}
-                  className="text-sm overflow-hidden leading-7 w-full"
+                  className="text-sm overflow-hidden leading-7 w-full text-black dark:text-white font-normal "
                 >
                   {msg.content || ""}
                 </ReactMarkdown>

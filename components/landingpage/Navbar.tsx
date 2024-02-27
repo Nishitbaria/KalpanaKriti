@@ -104,13 +104,13 @@ export const Navbar = () => {
             </DropdownMenu>
             <SignedOut>
               <Link
-                href="/login"
-                className="align-middle  lg:block hidden select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-gray-900 hover:bg-gray-900/10 active:bg-gray-900/20"
+                href="/sign-in"
+                className="align-middle  lg:block hidden select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg text-gray-900 dark:text-white  hover:bg-gray-800/10 active:bg-gray-900/20"
               >
                 Log in
               </Link>
             </SignedOut>
-            <UserButton />
+            <UserButton afterSignOutUrl="/" />
             <MobileSidebar2 />
           </div>
         </div>
