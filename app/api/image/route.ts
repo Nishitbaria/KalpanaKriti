@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subsciption";
-
+import { response } from "express";
+import axios from "axios";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -38,17 +39,43 @@ export async function POST(req: Request) {
       return new NextResponse("Free trial has been expired", { status: 403 });
     }
 
-    const response = await openai.images.generate({
-      prompt: prompt,
-      n: parseInt(amount, 10),
-      size: resolution,
-    });
+    // const response = await openai.images.generate({
+    //   prompt: prompt,
+    //   n: parseInt(amount, 10),
+    //   size: resolution,
+    // });
+
+    const options = {
+      method: "POST",
+      url: "https://api.edenai.run/v2/image/generation",
+      headers: {
+        authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTBmMTYxY2EtY2JjZS00NTczLWE2YzEtYmRiNDRjZjIxOTA1IiwidHlwZSI6ImFwaV90b2tlbiJ9.ZQSAGuoxKrNpHRSvDWtSu06kkymof06t3v7gSktLics",
+      },
+      data: {
+        providers: "openai",
+        text: "a red flying balloon.",
+        resolution: "512x512",
+        fallback_providers: "",
+      },
+    };
+
+
+
+    const response = axios
+      .request(options)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     // check if the user is pro and increment the api limit
     if (!isPro) {
       await incrementApiLimit();
     }
 
-    return NextResponse.json(response.data);
+    return NextResponse.json(response);
   } catch (error) {
     console.error(error);
     return new NextResponse("Internal Server Error", { status: 500 });

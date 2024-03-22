@@ -34,7 +34,7 @@ const Features = () => {
   ];
 
   return (
-    <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+    <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto bg-slate-100">
       <h1 className="mt-4 text-5xl font-extrabold text-gray-900 dark:text-white text-center mb-10">
         Some of Example of AI Power
         <span className="sm:ml-2 bg-gradient-to-br bg-clip-text text-transparent from-[#58ffe9] to-[#00ccff] leading-[1.2]">
