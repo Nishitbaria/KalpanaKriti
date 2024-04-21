@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const API_KEY = "AIzaSyC4V14KnN4FgUHcZwbNejh8UBLuiYPuhYE"
+const API_KEY = process.env.NEXT_GOOGLE_GEMINI_KEY!;
 const genai = new GoogleGenerativeAI(API_KEY);
 
 
